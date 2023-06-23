@@ -1,4 +1,4 @@
-from object_3d import *
+from cube import *
 from camera import *
 from projection import *
 
@@ -14,21 +14,27 @@ class SoftwareRender:
         self.screen = pg.display.set_mode(self.RES)
         self.clock = pg.time.Clock()
         self.create_objects()
+        self.smallfont = pg.font.SysFont('Corbel',35)
+
+        self.text = self.smallfont.render('+' , True , pg.Color(255,255,255))
+
 
     def create_objects(self):
         self.camera = Camera(self,[0.5,1,-4])
         self.projection = Projection(self)
-        self.object = Object3D(self)
-        self.object2 = Object3D(self)
-        self.object.translate([0,0,0])
-        self.object2.translate([1,1,1])
-        self.object.scale(0.5)
-        self.object2.scale(0.5)
+        self.objects = [
+
+        ]
+
+
+        #self.object.translate([0,0,0])
+        #self.object.scale(0.5)
 
     def draw(self):
-        self.screen.fill(pg.Color('darkslategray'))
-        self.object.draw()
-        self.object2.draw()
+        self.screen.fill(pg.Color('#121212'))
+        for rb in self.objects:
+            rb.draw()
+        self.screen.blit(self.text , (self.WIDTH/2,self.HEIGHT/2))
 
     def run(self):
         while True:
