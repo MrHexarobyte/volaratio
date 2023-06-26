@@ -12,3 +12,11 @@ pip install numpy pygame
 * Done! Now change examplescript.py to your liking.
 
 #### LEARN MORE IN [THE WIKI](https://github.com/MrHexarobyte/volaratio/wiki/)
+
+
+
+### ❌ TO DO ✔️
+- [ ] finish wiki
+- [ ] add more shapes
+- [ ] add small functionalities like changing the window title etc.
+- [ ] texturing and shading if i can
