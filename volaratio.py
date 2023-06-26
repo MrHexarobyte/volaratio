@@ -50,7 +50,6 @@ class Renderer:
         """
         self.screen.fill(backgr)
         for rb in self.objects:
-            
             rb.draw()
         self.screen.blit(self.text , (self.WIDTH/2,self.HEIGHT/2))
 
@@ -63,6 +62,7 @@ class Renderer:
             self.draw()
             self.camera.control()
             [exit() for i in pg.event.get() if i.type == pg.QUIT]
+            [self.x.stop() for i in pg.event.get() if i.type == pg.QUIT]
             pg.display.set_caption(str(self.clock.get_fps()))
             pg.display.flip()
             self.clock.tick(self.FPS)
@@ -73,7 +73,8 @@ class Renderer:
         #### func (FUNCTION):
           Function that will run with the application.
         """
-        threading.Thread(target=func,daemon=True).start()
+        self.x = threading.Thread(target=func,daemon=True)
+        self.x.start()
 
 
 if __name__ == "__main__":
