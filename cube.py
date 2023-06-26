@@ -1,16 +1,24 @@
 import pygame as pg
 from matrix_functions import *
 
+# The Cube3D class creates a 3D cube object with specified color, position, and size for rendering.
 class Cube3D:
     def __init__(self,render,color,pos=[0,0,0],sz=1):
-        '''
-        Creates a 3D Cube.
-        Render - The Software Renderers self property.
-        Color - The color of the cube. Provide with the type of pygame.Color()
-        Position - The position of the cube. ( ARRAY ). [0,0,0] by default.
-        Size - Size multiplier. 1 = normal cube. 1 by default.
-        '''
-
+        """
+        This function initializes a 3D object with a specified color, rendering method, position, and size.
+        
+        * #### render
+          Application parameter. Renderer() class required.
+        * #### color
+         The color of the object being rendered
+        * #### pos
+         The position of the object in 3D space, represented as a list or tuple of three values
+        ``(x, y, z)``
+        * #### sz
+         sz stands for size and it determines the size of the object being created. It is used to
+        scale the vertexes of the object, defaults to 1 (optional)
+        """
+        
         self.color = color
         self.render = render
         s = 1
@@ -43,6 +51,12 @@ class Cube3D:
     def scale(self,scale_to):
         self.vertexes = self.vertexes @ scale(scale_to)
     def rotate(self,typ,angle):
+        """
+        This function rotates a set of vertexes based on the specified axis and angle.
+        
+        :param type: a string indicating the axis of rotation ("x", "y", or "z")
+        :param angle: The angle (in degrees) by which the object needs to be rotated
+        """
         if typ.lower == "x":
             self.vertexes = self.vertexes @ rotate_x(angle)
         if typ.lower == "y":
