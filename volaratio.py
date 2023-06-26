@@ -1,6 +1,7 @@
 from cube import *
 from camera import *
 from projection import *
+from customobj import *
 
 import pygame as pg
 
