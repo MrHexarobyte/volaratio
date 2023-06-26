@@ -2,8 +2,11 @@ from cube import *
 from camera import *
 from projection import *
 from customobj import *
+import threading
 
 import pygame as pg
+
+
 
 backgr = pg.Color('#121212')
 # Is the main application.
@@ -17,6 +20,7 @@ class Renderer:
         self.clock = pg.time.Clock()
         self.create_objects()
         self.smallfont = pg.font.SysFont('Corbel',35)
+        self.key = pg.key.get_pressed()
   
         self.text = self.smallfont.render('+' , True , pg.Color(255,255,255))
 
@@ -62,6 +66,14 @@ class Renderer:
             pg.display.set_caption(str(self.clock.get_fps()))
             pg.display.flip()
             self.clock.tick(self.FPS)
+    def addfunc(self,func):
+        """
+        Run a function with the application.
+        
+        #### func (FUNCTION):
+          Function that will run with the application.
+        """
+        threading.Thread(target=func,daemon=True).start()
 
 
 if __name__ == "__main__":
