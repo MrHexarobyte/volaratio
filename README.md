@@ -10,3 +10,5 @@ pip install numpy pygame
 ```
 * Run examplescript.py
 * Done! Now change examplescript.py to your liking.
+
+#### LEARN MORE IN [THE WIKI](https://github.com/MrHexarobyte/volaratio/wiki/)
