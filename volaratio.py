@@ -3,6 +3,7 @@ from camera import *
 from projection import *
 from customobj import *
 import threading
+import math
 
 import pygame as pg
 
@@ -12,6 +13,8 @@ backgr = pg.Color('#121212')
 # Is the main application.
 class Renderer:
     def __init__(self):
+        self.res = {}
+        self.dis = []
         pg.init()
         self.RES = self.WIDTH,self.HEIGHT = 1600,800
         self.H_WIDTH, self.H_HEIGHT = self.WIDTH//2,self.HEIGHT//2
@@ -50,7 +53,28 @@ class Renderer:
         """
         self.screen.fill(backgr)
         for rb in self.objects:
-            rb.draw()
+
+        
+            if len(self.dis) != len(self.objects):
+                self.dis.append(math.sqrt((rb.pos[0] - self.camera.position[0])**2 + (rb.pos[1] - self.camera.position[1])**2 + (rb.pos[2] - self.camera.position[2])**2))
+                print(self.dis)
+            else:
+                # First, list 
+                
+                self.res = {self.objects[i]: self.dis[i] for i in range(len(self.objects))} # CUBE: NUM
+
+                for i in range(len(self.dis)):
+                    self.dis[i] = math.sqrt((rb.pos[i] - self.camera.position[0])**2 + (rb.pos[i] - self.camera.position[1])**2 + (rb.pos[i] - self.camera.position[2])**2) 
+                    print(self.dis)
+                ## PART ABOVE DOESNT WORK EXACTLY, ERROR:      self.res[min(self.dis)].draw() KeyError: 4.106354835424345
+
+                self.res = {v: k for k, v in self.res.items()} # NUM: CUBE
+
+                self.res[min(self.dis)].draw()
+                
+
+
+            
         self.screen.blit(self.text , (self.WIDTH/2,self.HEIGHT/2))
 
     def run(self):
