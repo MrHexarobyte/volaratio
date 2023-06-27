@@ -1,4 +1,9 @@
 # 🎞️ Volaratio 🎞️
+bug fix beta edition
+
+# ! WARNING ! 
+This version does not work right now. Please do not use this.
+
 An python 3d rendering library, made with numpy and pygame,for developers.
 
 ## ⁉️⁉️ HOW TO USE THIS? ⁉️⁉️
