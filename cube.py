@@ -29,6 +29,7 @@ class Cube3D:
         ])
         self.vertexes = self.vertexes @ translate(pos)
         self.vertexes = self.vertexes @ scale(sz)
+        self.pos = pos
 
     def draw(self):
         self.screen_projection()
@@ -48,6 +49,7 @@ class Cube3D:
 
     def translate(self,pos):
         self.vertexes = self.vertexes @ translate(pos)
+        self.pos = [self.pos[0] + pos[0],self.pos[1] + pos[1],self.pos[2] + pos[2]]
     def scale(self,scale_to):
         self.vertexes = self.vertexes @ scale(scale_to)
     def rotate(self,typ,angle):
